@@ -63,7 +63,7 @@ defmodule AbsintheErrorPayload.ChangesetParser do
     construct_message(field, {message, opts})
   end
 
-  defp construct_field(parent_field, field, options \\ []) do
+  defp construct_field(parent_field, field, options \\ %{}) do
     :absinthe_error_payload
     |> Application.get_env(:field_constructor)
     |> apply(:error, [parent_field, field, options])
@@ -95,8 +95,17 @@ defmodule AbsintheErrorPayload.ChangesetParser do
     }
   end
 
-  defp tidy_opts(opts) do
-    Keyword.drop(opts, [:validation, :max, :is, :min, :code])
+  defp tidy_opts(opts) when is_list(opts) do
+    IO.inspect opts
+    opts
+    |> Keyword.drop([:validation, :max, :is, :min, :code])
+    |> Enum.into(%{})
+  end
+  defp tidy_opts(opts) when is_map(opts) do
+    IO.inspect opts
+    opts
+    |> Map.drop([:validation, :max, :is, :min, :code])
+    |> Enum.into(%{})
   end
 
   @doc """

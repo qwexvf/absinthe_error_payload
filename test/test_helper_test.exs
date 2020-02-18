@@ -113,7 +113,7 @@ defmodule AbsintheErrorPayload.TestHelperTest do
       mutation_response = %{
         "successful" => false,
         "messages" => [
-          %{"key" => "test", "field" => "test", "options" => [], "code" => "unknown", "message" => "an error", "template" => "an error"}
+          %{"key" => "test", "field" => "test", "options" => %{}, "code" => "unknown", "message" => "an error", "template" => "an error"}
         ],
         "result" => nil
       }

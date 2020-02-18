@@ -55,7 +55,7 @@ defmodule AbsintheErrorPayload.ChangesetParserCustomFieldConstructorTest do
   defmodule CustomFieldConstructor do
     @behaviour AbsintheErrorPayload.FieldConstructor
 
-    def error(parent_field, field, options \\ [])
+    def error(parent_field, field, options \\ %{})
     def error(parent_field, nil, _options), do: "@root›#{parent_field}"
     def error(parent_field, field, index: index), do: "#{parent_field}@#{index}›#{field}"
     def error(parent_field, field, _options), do: "#{parent_field}›#{field}"
@@ -68,12 +68,13 @@ defmodule AbsintheErrorPayload.ChangesetParserCustomFieldConstructorTest do
   describe "construct_message/2" do
     test "creates expected struct" do
       message = "can't be %{illegal}"
-      options = [code: "foobar"]
+      options = %{code: "foobar"}
 
       message = ChangesetParser.construct_message(:title, {message, options})
 
       assert %ValidationMessage{} = message
       assert message.field == "@root›title"
+      assert %{} == message.options
     end
   end
 

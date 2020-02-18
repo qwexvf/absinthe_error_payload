@@ -293,7 +293,7 @@ defmodule AbsintheErrorPayload.TestHelper do
       message: :string,
       code: :string,
       template: :string,
-      options: :list,
+      options: :map,
       key: :string,
       value: :string
     }
