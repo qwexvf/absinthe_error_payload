@@ -7,7 +7,7 @@ defmodule AbsintheErrorPayload.Mixfile do
     [
       app: :absinthe_error_payload,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.18",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -40,7 +40,7 @@ defmodule AbsintheErrorPayload.Mixfile do
       {:ecto, "~> 3.1"},
       {:absinthe, "~> 1.3"},
       {:excoveralls, "~> 0.6", only: [:dev, :test]},
-      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7.12", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
